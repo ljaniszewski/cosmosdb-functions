@@ -1,0 +1,41 @@
+image: node:latest
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm start
+  artifacts:
+    paths:
+      - dist/
+      - node_modules/
+    expire_in: 15 minutes
+
+deploy_dev:
+  stage: deploy
+  only:
+    - develop
+  script:
+    - node synchronizeWithCosmosDB DEV
+
+deploy_stg:
+  stage: deploy
+  only:
+    - /^release\/.*$/
+  script:
+    - node synchronizeWithCosmosDB STG
+
+deploy_prod:
+  stage: deploy
+  only:
+    - master
+  script:
+    - node synchronizeWithCosmosDB PROD

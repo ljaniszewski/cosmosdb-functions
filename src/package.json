@@ -1,0 +1,32 @@
+{
+  "name": "cosmosdb-functions",
+  "version": "1.0",
+  "description": "Sample CosmosDB triggers and stored procedures",
+  "scripts": {
+    "start": "babel src --out-dir dist"
+  },
+  "babel": {
+    "presets": [
+      [
+        "minify",
+        {
+          "removeConsole": true
+        }
+      ]
+    ],
+    "plugins": [
+      "babel-plugin-loop-optimizer"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "babel-preset-minify": "^0.5.0",
+    "babel-plugin-loop-optimizer": "^1.4.1",
+    "crypto": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:ljaniszewski/cosmosdb-functions.git"
+  }
+}
